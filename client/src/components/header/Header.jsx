@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function Header() {
     return(
         <div className="container-fluid nav-bar">
@@ -11,8 +13,8 @@ export default function Header() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <div className="navbar-nav mx-auto">
-                            <a href="index.html" className="nav-item nav-link active">Home</a>
-                            <a href="about.html" className="nav-item nav-link">Recipes</a>
+                            <Link to="/" className="nav-item nav-link active">Home</Link>
+                            <Link to="/recipes" className="nav-item nav-link">Recipes</Link>
                             <a href="service.html" className="nav-item nav-link">Add recipes</a>
                             <a href="event.html" className="nav-item nav-link">Register</a>
                             <a href="menu.html" className="nav-item nav-link">Login</a>
