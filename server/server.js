@@ -1394,9 +1394,7 @@
                 "100 g noodles",
                 "salt and black pepper"
               ],
-              "prepTime": 15,
               "cookTime": 45,
-              "totalTime": 60,
               "servings": 4,
               "difficulty": "easy",
               "_ownerId": "user567"
@@ -1416,9 +1414,7 @@
                 "50 g parmesan",
                 "salt and pepper"
               ],
-              "prepTime": 10,
               "cookTime": 20,
-              "totalTime": 30,
               "servings": 2,
               "difficulty": "medium",
               "_ownerId": "user982"
@@ -1439,9 +1435,7 @@
                 "100 ml milk",
                 "1 tsp baking powder"
               ],
-              "prepTime": 15,
               "cookTime": 20,
-              "totalTime": 35,
               "servings": 6,
               "difficulty": "easy",
               "_ownerId": "user245"
@@ -1463,9 +1457,7 @@
                 "salt",
                 "oregano"
               ],
-              "prepTime": 10,
               "cookTime": 0,
-              "totalTime": 10,
               "servings": 2,
               "difficulty": "easy",
               "_ownerId": "user567"
@@ -1487,9 +1479,7 @@
                 "salt",
                 "bay leaf"
               ],
-              "prepTime": 20,
               "cookTime": 90,
-              "totalTime": 110,
               "servings": 4,
               "difficulty": "medium",
               "_ownerId": "user999"
@@ -1510,9 +1500,7 @@
                 "black pepper",
                 "butter"
               ],
-              "prepTime": 5,
               "cookTime": 10,
-              "totalTime": 15,
               "servings": 1,
               "difficulty": "easy",
               "_ownerId": "user321"
