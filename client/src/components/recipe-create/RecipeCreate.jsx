@@ -62,12 +62,12 @@ export default function RecipeCreate() {
 
                         <div className="row g-3 mb-4">
                             <div className="col-md-4">
-                                <label htmlFor="prepTime" className="form-label text-dark">Prep Time (min)</label>
+                                <label htmlFor="category" className="form-label text-dark">Category</label>
                                 <input
-                                    id="prepTime"
-                                    type="number"
+                                    id="category"
+                                    type="text"
                                     className="w-100 form-control p-3 border-primary bg-light"
-                                    placeholder="Prep Time"
+                                    placeholder="Category"
                                 />
                             </div>
                             <div className="col-md-4">
@@ -99,17 +99,6 @@ export default function RecipeCreate() {
                                 placeholder="Difficulty (easy, medium, hard)"
                             />
                         </div>
-
-                        <div className="mb-3">
-                            <label htmlFor="ownerId" className="form-label text-dark">Owner ID</label>
-                            <input
-                                id="ownerId"
-                                type="text"
-                                className="w-100 form-control p-3 border-primary bg-light"
-                                placeholder="Owner ID"
-                            />
-                        </div>
-
                         <button
                             type="submit"
                             className="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill"
