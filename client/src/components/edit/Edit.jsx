@@ -1,8 +1,22 @@
-import { useParams } from "react-router"
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router"
 
 export default function Edit() {
+    const navigate = useNavigate();
     const { recipeId } = useParams();
-    
+    const [values, setValues] = useState({})
+
+    useEffect(() => {
+        fetch(`http://localhost:3030/data/recipes/${recipeId}`)
+        .then(response => response.json())
+        .then(result => {
+            setValues(result)
+        })
+        .catch(err => {
+            alert(err.message)
+        })
+    }, [recipeId])
+
     return(        
     <div className="container-fluid py-6 wow bounceInUp" data-wow-delay="0.1s">
         <div className="container">
@@ -19,6 +33,7 @@ export default function Edit() {
                         <input
                             id="title"
                             type="text"
+                            value={values.title}
                             className="w-100 form-control p-3 border-primary bg-light"
                             placeholder="Recipe Title"
                         />
@@ -28,6 +43,7 @@ export default function Edit() {
                         <label htmlFor="description" className="form-label text-dark">Recipe Description</label>
                         <textarea
                             id="description"
+                            value={values.description}
                             className="w-100 form-control p-3 border-primary bg-light"
                             rows="4"
                             placeholder="Recipe Description"
@@ -35,19 +51,10 @@ export default function Edit() {
                     </div>
 
                     <div className="mb-3">
-                        <label htmlFor="category" className="form-label text-dark">Category</label>
-                        <input
-                            id="category"
-                            type="text"
-                            className="w-100 form-control p-3 border-primary bg-light"
-                            placeholder="Category (e.g., Soups, Main, Dessert)"
-                        />
-                    </div>
-
-                    <div className="mb-3">
                         <label htmlFor="imageUrl" className="form-label text-dark">Image URL</label>
                         <input
                             id="imageUrl"
+                            value={values.imageUrl}
                             type="text"
                             className="w-100 form-control p-3 border-primary bg-light"
                             placeholder="Image URL"
@@ -58,6 +65,7 @@ export default function Edit() {
                         <label htmlFor="ingredients" className="form-label text-dark">Ingredients</label>
                         <input
                             id="ingredients"
+                            value={values.ingredients}
                             type="text"
                             className="w-100 form-control p-3 border-primary bg-light"
                             placeholder="Ingredients (comma separated)"
@@ -69,15 +77,17 @@ export default function Edit() {
                             <label htmlFor="category" className="form-label text-dark">Category</label>
                             <input
                                 id="category"
+                                value={values.category}
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
-                                placeholder="Category"
+                                placeholder="Category (e.g., Soups, Main, Dessert)"
                             />
                         </div>
                         <div className="col-md-4">
                             <label htmlFor="cookTime" className="form-label text-dark">Cook Time (min)</label>
                             <input
                                 id="cookTime"
+                                value={values.cookTime}
                                 type="number"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Cook Time"
@@ -87,6 +97,7 @@ export default function Edit() {
                             <label htmlFor="servings" className="form-label text-dark">Servings</label>
                             <input
                                 id="servings"
+                                value={values.servings}
                                 type="number"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Servings"
@@ -98,6 +109,7 @@ export default function Edit() {
                         <label htmlFor="difficulty" className="form-label text-dark">Difficulty</label>
                         <input
                             id="difficulty"
+                            value={values.difficulty}
                             type="text"
                             className="w-100 form-control p-3 border-primary bg-light"
                             placeholder="Difficulty (easy, medium, hard)"
