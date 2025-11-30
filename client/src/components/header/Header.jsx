@@ -15,7 +15,7 @@ export default function Header() {
                         <div className="navbar-nav mx-auto">
                             <Link to="/" className="nav-item nav-link active">Home</Link>
                             <Link to="/recipes" className="nav-item nav-link">Recipes</Link>
-                            <a href="service.html" className="nav-item nav-link">Add recipes</a>
+                            <Link to="/recipes/create" className="nav-item nav-link">Add recipes</Link>
                             <Link to="/register" className="nav-item nav-link">Register</Link>
                             <Link to="/login" className="nav-item nav-link">Login</Link>
                             <a href="menu.html" className="nav-item nav-link">Logout</a>

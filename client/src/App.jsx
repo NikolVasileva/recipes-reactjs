@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer.jsx"
 import Details from "./components/details/Details.jsx"
 import Login from "./components/login/Login.jsx"
 import Register from "./components/register/Register.jsx"
+import RecipeCreate from "./components/recipe-create/RecipeCreate.jsx"
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/create" element={<RecipeCreate />} />
         <Route path="/recipes/:recipeId/details" element={<Details />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
