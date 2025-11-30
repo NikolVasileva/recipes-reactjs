@@ -5,7 +5,7 @@ import UserContext from "../../contexts/UserContext.js";
 
 export default function Register() {
     const navigate = useNavigate()
-    const { registerHadler } = useContext(UserContext)
+    const { registerHandler } = useContext(UserContext)
 
     const registerSubmitHadler = async (values) => {
         const { email, password, confirmPassword } = values;
@@ -19,7 +19,7 @@ export default function Register() {
         }
 
         try {
-            await registerHadler(email, password);
+            await registerHandler(email, password);
             navigate("/")
 
         } catch(err) {
@@ -64,7 +64,7 @@ export default function Register() {
                                     placeholder="Password"
                                 />
                                 <input
-                                    type="text" 
+                                    type="password" 
                                     id="confirmPassword"
                                     name="confirmPassword"
                                     onChange={changeHandler}
