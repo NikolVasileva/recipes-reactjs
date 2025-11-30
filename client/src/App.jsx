@@ -10,34 +10,32 @@ import RecipeCreate from "./components/recipe-create/RecipeCreate.jsx"
 import Edit from "./components/edit/Edit.jsx"
 import { useState } from "react"
 import UserContext from "./contexts/UserContext.js"
+import useRequest from "./hooks/useFetch.js"
 
 function App() {
   const [user, setUser] = useState(null);
+  const { request } = useRequest();
 
   const registerHandler = async (email, password) => {
     const newUser = { email, password };
 
     // Register API call 
-    const response = await fetch('http://localhost:3030/users/register', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(newUser),
-    });
-
-    const result = await response.json();
-
-    console.log(result);
-
+    const result = await request("/users/register", "POST", newUser)
     // Login user after register
     setUser(result);
+  };
+
+  const loginHandler = async (email, password) => {
+    const result = await request("/users/login", "POST", { email, password })
+
+    setUser(result)
   }
 
   const userContextValues = {
     user,
     isAuthenticated: !!user?.accessToken,
-    registerHandler
+    registerHandler,
+    loginHandler,
   }
   return (
     <UserContext.Provider value={userContextValues}>
