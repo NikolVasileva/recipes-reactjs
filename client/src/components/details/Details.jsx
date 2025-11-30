@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 
 export default function Details() {
-    const { recipeId } = useParams()
-    const [recipe, setRecipe] = useState({})
+    const { recipeId } = useParams();
+    const [recipe, setRecipe] = useState({});
 
     useEffect(() => {
         fetch(`http://localhost:3030/data/recipes/${recipeId}`)

@@ -1,10 +1,28 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router"
+import { useNavigate, useParams } from "react-router";
+
+const initialValues = {
+    title: "",
+    description: "",
+    imageUrl: "",
+    ingredients: "",
+    category: "",
+    cookTime: "",
+    servings: "",
+    difficulty: ""
+}
 
 export default function Edit() {
     const navigate = useNavigate();
     const { recipeId } = useParams();
-    const [values, setValues] = useState({})
+    const [values, setValues] = useState(initialValues)
+
+    const changeHandler = (e) => {
+        setValues(state => ({
+            ...state,
+            [e.target.name]: e.target.value
+        }))
+    }
 
     useEffect(() => {
         fetch(`http://localhost:3030/data/recipes/${recipeId}`)
@@ -15,7 +33,24 @@ export default function Edit() {
         .catch(err => {
             alert(err.message)
         })
-    }, [recipeId])
+    }, [recipeId]);
+
+    const editRecipeHandler = async() => {
+        try {
+            const response = await fetch(`http://localhost:3030/data/recipes/${recipeId}`, {
+                method: "PUT",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(values)
+            });
+            await response.json();
+            navigate(`/recipes/${recipeId}/details`);
+            
+        } catch(err) {
+            alert(err.message)
+        }
+    }
 
     return(        
     <div className="container-fluid py-6 wow bounceInUp" data-wow-delay="0.1s">
@@ -27,13 +62,15 @@ export default function Edit() {
                     </small>
                     <h1 className="display-5 mb-0">Edit Recipe</h1>
                 </div>
-                <form>
+                <form action={editRecipeHandler}>
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label text-dark">Recipe Title</label>
                         <input
                             id="title"
+                            name="title"
                             type="text"
                             value={values.title}
+                            onChange={changeHandler}
                             className="w-100 form-control p-3 border-primary bg-light"
                             placeholder="Recipe Title"
                         />
@@ -43,7 +80,9 @@ export default function Edit() {
                         <label htmlFor="description" className="form-label text-dark">Recipe Description</label>
                         <textarea
                             id="description"
+                            name="description"
                             value={values.description}
+                            onChange={changeHandler}
                             className="w-100 form-control p-3 border-primary bg-light"
                             rows="4"
                             placeholder="Recipe Description"
@@ -54,7 +93,9 @@ export default function Edit() {
                         <label htmlFor="imageUrl" className="form-label text-dark">Image URL</label>
                         <input
                             id="imageUrl"
+                            name="imageUrl"
                             value={values.imageUrl}
+                            onChange={changeHandler}
                             type="text"
                             className="w-100 form-control p-3 border-primary bg-light"
                             placeholder="Image URL"
@@ -65,7 +106,9 @@ export default function Edit() {
                         <label htmlFor="ingredients" className="form-label text-dark">Ingredients</label>
                         <input
                             id="ingredients"
+                            name="ingredients"
                             value={values.ingredients}
+                            onChange={changeHandler}
                             type="text"
                             className="w-100 form-control p-3 border-primary bg-light"
                             placeholder="Ingredients (comma separated)"
@@ -77,7 +120,9 @@ export default function Edit() {
                             <label htmlFor="category" className="form-label text-dark">Category</label>
                             <input
                                 id="category"
+                                name="category"
                                 value={values.category}
+                                onChange={changeHandler}
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Category (e.g., Soups, Main, Dessert)"
@@ -87,7 +132,9 @@ export default function Edit() {
                             <label htmlFor="cookTime" className="form-label text-dark">Cook Time (min)</label>
                             <input
                                 id="cookTime"
+                                name="cookTime"
                                 value={values.cookTime}
+                                onChange={changeHandler}
                                 type="number"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Cook Time"
@@ -97,7 +144,9 @@ export default function Edit() {
                             <label htmlFor="servings" className="form-label text-dark">Servings</label>
                             <input
                                 id="servings"
+                                name="servings"
                                 value={values.servings}
+                                onChange={changeHandler}
                                 type="number"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Servings"
@@ -109,7 +158,9 @@ export default function Edit() {
                         <label htmlFor="difficulty" className="form-label text-dark">Difficulty</label>
                         <input
                             id="difficulty"
+                            name="difficulty"
                             value={values.difficulty}
+                            onChange={changeHandler}
                             type="text"
                             className="w-100 form-control p-3 border-primary bg-light"
                             placeholder="Difficulty (easy, medium, hard)"
@@ -119,7 +170,7 @@ export default function Edit() {
                         type="submit"
                         className="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill"
                     >
-                        Add Recipe
+                        Edit Recipe
                     </button>
                 </form>
             </div>
