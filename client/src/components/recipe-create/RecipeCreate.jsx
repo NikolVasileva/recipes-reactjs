@@ -1,4 +1,31 @@
+import { useNavigate } from "react-router";
+
 export default function RecipeCreate() {
+    const navigate = useNavigate();
+
+    const createRecipeHandler = async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.target)
+        const data = Object.fromEntries(formData);
+        data._createdOn = Date.now();
+
+        try {
+            const response = await fetch("http://localhost:3030/data/recipes", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+
+            await response.json();
+            navigate("/recipes");
+
+        } catch(err) {
+            alert(err.message)
+        }
+    }
     return (
         <div className="container-fluid py-6 wow bounceInUp" data-wow-delay="0.1s">
             <div className="container">
@@ -9,7 +36,7 @@ export default function RecipeCreate() {
                         </small>
                         <h1 className="display-5 mb-0">Create a Recipe</h1>
                     </div>
-                    <form>
+                    <form onSubmit={createRecipeHandler}>
                         <div className="mb-3">
                             <label htmlFor="title" className="form-label text-dark">Recipe Title</label>
                             <input
