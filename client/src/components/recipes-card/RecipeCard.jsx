@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function RecipesCard({
     _id,
     title,
@@ -9,8 +11,6 @@ export default function RecipesCard({
 
 }) {
     return (
-
-
         <div className="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
             <div className="bg-light rounded service-item">
                 <div className="service-content d-flex align-items-center justify-content-center p-4">
@@ -32,7 +32,7 @@ export default function RecipesCard({
                             <span>{difficulty}</span>
                         </div>
 
-                        <a href="#" className="btn btn-primary px-4 py-2 rounded-pill">Read More</a>
+                        <Link to={`/recipes/${_id}/details`}className="btn btn-primary px-4 py-2 rounded-pill">Read More</Link>
                     </div>
                 </div>
             </div>
