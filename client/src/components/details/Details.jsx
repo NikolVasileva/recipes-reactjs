@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 export default function Details() {
-    const {recipeId} = useParams()
+    const { recipeId } = useParams()
     const [recipe, setRecipe] = useState({})
 
     useEffect(() => {
         fetch(`http://localhost:3030/data/recipes/${recipeId}`)
-        .then(response => response.json())
-        .then(data => {
-            setRecipe(data)
-        })
-        .catch(err => alert(err.message))
+            .then(response => response.json())
+            .then(data => {
+                setRecipe(data)
+            })
+            .catch(err => alert(err.message))
     }, [recipeId])
 
     return (
@@ -36,8 +36,12 @@ export default function Details() {
                         </small>
 
                         <h1 className="display-5 mb-4">{recipe.title}</h1>
+                        <p className="text-dark mb-4">
+                            <i className="fas fa-tag text-primary me-2"></i>
+                            Category: {recipe.category}
+                        </p>
 
-                        <p className="mb-4">
+                        <p className="text-dark mb-4">
                             {recipe.description}
                         </p>
 
