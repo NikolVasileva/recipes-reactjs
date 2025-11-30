@@ -58,16 +58,6 @@ export default function RecipeCreate() {
                         </div>
 
                         <div className="mb-3">
-                            <label htmlFor="category" className="form-label text-dark">Category</label>
-                            <input
-                                id="category"
-                                type="text"
-                                className="w-100 form-control p-3 border-primary bg-light"
-                                placeholder="Category (e.g., Soups, Main, Dessert)"
-                            />
-                        </div>
-
-                        <div className="mb-3">
                             <label htmlFor="imageUrl" className="form-label text-dark">Image URL</label>
                             <input
                                 id="imageUrl"
