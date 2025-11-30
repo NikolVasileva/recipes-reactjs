@@ -37,7 +37,10 @@ export default function Details() {
                         </div>
 
                         <a href="#" className="btn btn-primary py-3 px-5 rounded-pill">
-                            Cook now<i className="fas fa-arrow-right ps-2"></i>
+                            Edit<i className="fas fa-arrow-right ps-2"></i>
+                        </a>
+                        <a href="#" className="btn btn-primary py-3 px-5 rounded-pill">
+                            Delete<i className="fas fa-arrow-right ps-2"></i>
                         </a>
                     </div>
 

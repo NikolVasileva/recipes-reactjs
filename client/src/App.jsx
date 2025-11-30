@@ -4,6 +4,7 @@ import Home from "./components/home/Home.jsx"
 import Recipes from "./components/Recipes/Recipes.jsx"
 import Footer from "./components/footer/Footer.jsx"
 import Details from "./components/details/Details.jsx"
+import Login from "./components/login/Login.jsx"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipes/:recipeId/details" element={<Details />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
 
       <Footer />
