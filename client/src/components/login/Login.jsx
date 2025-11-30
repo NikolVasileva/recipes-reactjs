@@ -1,4 +1,23 @@
+import useForm from "../../hooks/useForm.js";
+
 export default function Login() {
+    const loginHadler = async (values) => {
+        const { email, password } = values;
+
+        const response = await fetch("http://localhost:3030/users/login", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        })
+
+        const result = await response.json();
+        console.log(result)
+    }
+
+    const { values, changeHandler, submitHandler } = useForm({email: "", password: ""}, loginHadler)
+
     return (
         <div className="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
             <div className="container">
@@ -15,22 +34,29 @@ export default function Login() {
                                 If you don’t have an account yet, feel free to create one and get access to more features.
                                 <a href="/register" className="ms-1">Create an account</a>.
                             </p>
-                            <form>
+                            <form onSubmit={submitHandler}>
                                 <input
-                                    type="text" name="email"
+                                    type="email" 
+                                    id="email"
+                                    name="email"
+                                    value={values.email}
+                                    onChange={changeHandler}
                                     className="w-100 form-control p-3 mb-4 border-primary bg-light"
                                     placeholder="Email"
                                 />
 
                                 <input
-                                    type="text" name="password"
+                                    type="password" 
+                                    id="login-password"
+                                    name="password"
+                                    value={values.password}
+                                    onChange={changeHandler}
                                     className="w-100 form-control p-3 mb-4 border-primary bg-light"
                                     placeholder="Password"
                                 />
                                 <button
                                     className="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
-                                    type="submit"
-                                >
+                                    type="submit">
                                     Login Now
                                 </button>
                             </form>
