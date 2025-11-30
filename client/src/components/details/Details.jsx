@@ -1,15 +1,29 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+
 export default function Details() {
+    const {recipeId} = useParams()
+    const [recipe, setRecipe] = useState({})
+
+    useEffect(() => {
+        fetch(`http://localhost:3030/data/recipes/${recipeId}`)
+        .then(response => response.json())
+        .then(data => {
+            setRecipe(data)
+        })
+        .catch(err => alert(err.message))
+    }, [recipeId])
+
     return (
         <div className="container-fluid py-6">
             <div className="container">
                 <div className="row g-5 align-items-center">
-
                     <div
                         className="col-lg-5 wow bounceInUp"
                         data-wow-delay="0.1s"
                         style={{ visibility: 'visible', animationDelay: '0.1s', animationName: 'bounceInUp' }}
                     >
-                        <img src="img/about.jpg" className="img-fluid rounded" alt="Recipe" />
+                        <img src={recipe.imageUrl} className="img-fluid rounded" alt={recipe.title} />
                     </div>
 
                     <div
@@ -21,24 +35,24 @@ export default function Details() {
                             About Recipe
                         </small>
 
-                        <h1 className="display-5 mb-4">Recipe Title Here</h1>
+                        <h1 className="display-5 mb-4">{recipe.title}</h1>
 
                         <p className="mb-4">
-                            This is a static recipe description. You can later replace it with dynamic data.
+                            {recipe.description}
                         </p>
 
                         <div className="row g-4 text-dark mb-5">
                             <div className="col-sm-6">
-                                <i className="fas fa-cheese text-primary me-2"></i>Ingredients: 4
+                                <i className="fas fa-cheese text-primary me-2"></i>Ingredients: {recipe.ingredients?.join(", ")}
                             </div>
                             <div className="col-sm-6">
-                                <i className="fas fa-utensils text-primary me-2"></i>Servings: 4
+                                <i className="fas fa-utensils text-primary me-2"></i>Servings: {recipe.servings}
                             </div>
                             <div className="col-sm-6">
-                                <i className="fa fa-clock text-primary me-2"></i>Cooking time: Easy
+                                <i className="fa fa-clock text-primary me-2"></i>Cooking time: {recipe.cookTime} min.
                             </div>
                             <div className="col-sm-6">
-                                <i className="fas fa-star text-primary me-2"></i>Difficulty: Easy
+                                <i className="fas fa-star text-primary me-2"></i>Difficulty: {recipe.difficulty}
                             </div>
                         </div>
                         <a href="#" className="btn btn-primary py-3 px-5 rounded-pill me-3">
