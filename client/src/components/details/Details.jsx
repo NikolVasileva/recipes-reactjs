@@ -29,19 +29,25 @@ export default function Details() {
 
                         <div className="row g-4 text-dark mb-5">
                             <div className="col-sm-6">
+                                <i className="fas fa-cheese text-primary me-2"></i>Ingredients: 4
+                            </div>
+                            <div className="col-sm-6">
                                 <i className="fas fa-utensils text-primary me-2"></i>Servings: 4
                             </div>
                             <div className="col-sm-6">
-                                <i className="fas fa-star text-warning me-2"></i>Difficulty: Easy
+                                <i className="fa fa-clock text-primary me-2"></i>Cooking time: Easy
+                            </div>
+                            <div className="col-sm-6">
+                                <i className="fas fa-star text-primary me-2"></i>Difficulty: Easy
                             </div>
                         </div>
+                        <a href="#" className="btn btn-primary py-3 px-5 rounded-pill me-3">
+                            Edit <i className="fas fa-arrow-right ps-2"></i>
+                        </a>
+                        <a href="#" className="btn btn-primary py-3 px-5 rounded-pill">
+                            Delete <i className="fas fa-arrow-right ps-2"></i>
+                        </a>
 
-                        <a href="#" className="btn btn-primary py-3 px-5 rounded-pill">
-                            Edit<i className="fas fa-arrow-right ps-2"></i>
-                        </a>
-                        <a href="#" className="btn btn-primary py-3 px-5 rounded-pill">
-                            Delete<i className="fas fa-arrow-right ps-2"></i>
-                        </a>
                     </div>
 
                 </div>
