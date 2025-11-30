@@ -10,6 +10,8 @@ const UserContext = createContext({
         accessToken: ""
     },
     registerHandler() {},
+    loginHandler() {},
+    
 })
 
 export default UserContext

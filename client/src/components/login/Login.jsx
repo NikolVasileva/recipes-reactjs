@@ -1,26 +1,27 @@
 import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm.js";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext.js";
 
 export default function Login() {
     const navigate = useNavigate();
+    const { loginHadler } = useContext(UserContext);
 
-    const loginHadler = async (values) => {
-        const { email, password } = values;
+    const submitHandler = async ({ email, password }) => {
+        if (!email || !password) {
+            return alert('Email and password are required!');
+        }
 
-        const response = await fetch("http://localhost:3030/users/login", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({ email, password })
-        })
+        try {
+            await loginHadler(email, password)
+            navigate("/")
 
-        const result = await response.json();
-        navigate("/")
-        console.log(result)
+        } catch (err) {
+            alert(err.message)
+        }
     }
 
-    const { values, changeHandler, formAction } = useForm({email: "", password: ""}, loginHadler)
+    const { values, changeHandler, formAction } = useForm({ email: "", password: "" }, loginHadler)
 
     return (
         <div className="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
@@ -40,7 +41,7 @@ export default function Login() {
                             </p>
                             <form action={formAction}>
                                 <input
-                                    type="email" 
+                                    type="email"
                                     id="email"
                                     name="email"
                                     value={values.email}
@@ -50,7 +51,7 @@ export default function Login() {
                                 />
 
                                 <input
-                                    type="password" 
+                                    type="password"
                                     id="login-password"
                                     name="password"
                                     value={values.password}
