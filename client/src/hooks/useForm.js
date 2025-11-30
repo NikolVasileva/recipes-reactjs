@@ -10,17 +10,13 @@ export default function useForm(initialValues, callback) {
         }))
     }
 
-    const submitHandler = async (e) => {
-        e.preventDefault();
-
-        await callback(values);
-
-        setValues(initialValues)
+    const formAction = async (formData) => {
+        await callback(values, formData);
     }
 
     return {
         values,
         changeHandler,
-        submitHandler
+        formAction
     }
 }

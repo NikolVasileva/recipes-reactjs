@@ -16,7 +16,7 @@ export default function Login() {
         console.log(result)
     }
 
-    const { values, changeHandler, submitHandler } = useForm({email: "", password: ""}, loginHadler)
+    const { values, changeHandler, formAction } = useForm({email: "", password: ""}, loginHadler)
 
     return (
         <div className="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
@@ -34,7 +34,7 @@ export default function Login() {
                                 If you don’t have an account yet, feel free to create one and get access to more features.
                                 <a href="/register" className="ms-1">Create an account</a>.
                             </p>
-                            <form onSubmit={submitHandler}>
+                            <form action={formAction}>
                                 <input
                                     type="email" 
                                     id="email"
