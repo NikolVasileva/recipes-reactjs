@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 export default function Details() {
     const { recipeId } = useParams()
@@ -59,9 +59,8 @@ export default function Details() {
                                 <i className="fas fa-star text-primary me-2"></i>Difficulty: {recipe.difficulty}
                             </div>
                         </div>
-                        <a href="#" className="btn btn-primary py-3 px-5 rounded-pill me-3">
-                            Edit <i className="fas fa-arrow-right ps-2"></i>
-                        </a>
+                        <Link to={`/recipes/${recipeId}/edit`} className="btn btn-primary py-3 px-5 rounded-pill">Edit <i className="fas fa-arrow-right ps-2"></i>
+                        </Link>
                         <a href="#" className="btn btn-primary py-3 px-5 rounded-pill">
                             Delete <i className="fas fa-arrow-right ps-2"></i>
                         </a>
