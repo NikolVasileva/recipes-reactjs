@@ -24,7 +24,7 @@ export default function RecipesCard({
                             <span>{servings} servings</span>
                         </div>
                         <div className="d-flex align-items-center justify-content-center mb-3">
-                            <i class="fa fa-clock text-primary me-2"></i>
+                            <i className="fa fa-clock text-primary me-2"></i>
                             <span>{cookTime} mins</span>
                         </div>
                         <div className="d-flex align-items-center justify-content-center mb-3">
