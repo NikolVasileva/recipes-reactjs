@@ -1,4 +1,33 @@
-export default function Register() {
+import { useNavigate } from "react-router";
+import useForm from "../../hooks/useForm.js";
+
+export default function Register({
+    onRegister
+}) {
+    const navigate = useNavigate()
+
+    const registerHadler = async (values) => {
+        const { email, password, confirmPassword } = values;
+
+        if(!email || !password) {
+            return alert("Email and password are required!")
+        }
+
+        if(password !== confirmPassword) {
+            return alert("Password missmatch!")
+        }
+
+        try {
+            await onRegister(email, password);
+            navigate("/")
+            
+        } catch(err) {
+            alert(err.message)
+        }
+    };
+
+    const { formAction, changeHandler } = useForm({ email: "", password: "", confirmPassword: ""}, registerHadler)
+    
     return (
         <div className="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
             <div className="container">
@@ -15,22 +44,31 @@ export default function Register() {
                                 If you already have an account, please log in to continue.
                                 <a href="/login" className="ms-1">Log in</a>.
                             </p>
-                            <form>
+                            <form action={formAction}>
                                 <input
-                                    type="text" name="email"
+                                    type="email" 
+                                    id="email"
+                                    onChange={changeHandler}
+                                    name="email"
                                     className="w-100 form-control p-3 mb-4 border-primary bg-light"
                                     placeholder="Email"
                                 />
 
                                 <input
-                                    type="text" name="password"
+                                    type="password" 
+                                    id="password"
+                                    name="password"
+                                    onChange={changeHandler}
                                     className="w-100 form-control p-3 mb-4 border-primary bg-light"
                                     placeholder="Password"
                                 />
                                 <input
-                                    type="text" name="repeatPassword"
+                                    type="text" 
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    onChange={changeHandler}
                                     className="w-100 form-control p-3 mb-4 border-primary bg-light"
-                                    placeholder="Repeat Password"
+                                    placeholder="Confirm Password"
                                 />
                                 <button
                                     className="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
