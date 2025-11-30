@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm.js";
 
 export default function Login() {
+    const navigate = useNavigate();
+
     const loginHadler = async (values) => {
         const { email, password } = values;
 
@@ -13,6 +16,7 @@ export default function Login() {
         })
 
         const result = await response.json();
+        navigate("/")
         console.log(result)
     }
 

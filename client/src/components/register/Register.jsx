@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm.js";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext.js";
 
-export default function Register({
-    onRegister
-}) {
+export default function Register() {
     const navigate = useNavigate()
+    const { registerHadler } = useContext(UserContext)
 
-    const registerHadler = async (values) => {
+    const registerSubmitHadler = async (values) => {
         const { email, password, confirmPassword } = values;
 
         if(!email || !password) {
@@ -18,15 +19,15 @@ export default function Register({
         }
 
         try {
-            await onRegister(email, password);
+            await registerHadler(email, password);
             navigate("/")
-            
+
         } catch(err) {
             alert(err.message)
         }
     };
 
-    const { formAction, changeHandler } = useForm({ email: "", password: "", confirmPassword: ""}, registerHadler)
+    const { formAction, changeHandler } = useForm({ email: "", password: "", confirmPassword: ""}, registerSubmitHadler)
     
     return (
         <div className="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
