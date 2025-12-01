@@ -7,14 +7,14 @@ export default function useRequest(url, initialState) {
     const { user, isAuthenticated } = useContext(UserContext);
     const [data, setData] = useState(initialState)
 
-    const request = async (url, method, data, config={}) => {
+    const request = async (url, method, data, config = {} ) => {
         let options = {};
 
-        if(method) {
+        if (method) {
             options.method = method
         }
 
-        if(data) {
+        if (data) {
             options.headers = {
                 "content-type": "application/json"
             }
@@ -29,10 +29,12 @@ export default function useRequest(url, initialState) {
         }
 
         const response = await fetch(`${baseUrl}${url}`, options);
+        
 
-        if(!response.ok) {
+        if (!response.ok) {
             throw response.statusText
         }
+        
 
         if (response.status === 204) {
             return {}
