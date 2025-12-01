@@ -18,7 +18,7 @@ export default function Header() {
                             <Link to="/recipes/create" className="nav-item nav-link">Add recipes</Link>
                             <Link to="/register" className="nav-item nav-link">Register</Link>
                             <Link to="/login" className="nav-item nav-link">Login</Link>
-                            <a href="menu.html" className="nav-item nav-link">Logout</a>
+                            <Link to="/logout" className="nav-item nav-link">Logout</Link>
                             <a href="contact.html" className="nav-item nav-link">Contact</a>
                         </div>
                         <button className="btn-search btn btn-primary btn-md-square me-4 rounded-circle d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#searchModal"><i className="fas fa-search"></i></button>

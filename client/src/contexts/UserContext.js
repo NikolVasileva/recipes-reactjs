@@ -12,7 +12,7 @@ const UserContext = createContext({
     },
     registerHandler() {},
     loginHandler() {},
-    logoutHandle() {},
+    logoutHandler() {},
 
 })
 
@@ -36,7 +36,7 @@ export function UserProvider({
         setUser(result)
     }
 
-    const logoutHandle = () => {
+    const logoutHandler = () => {
         return request('/users/logout')
         .finally(() => {
             setUser(null)
@@ -48,7 +48,7 @@ export function UserProvider({
         isAuthenticated: !!user?.accessToken,
         registerHandler,
         loginHandler,
-        logoutHandle
+        logoutHandler
     }
 
     return (

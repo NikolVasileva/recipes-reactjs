@@ -10,6 +10,7 @@ import RecipeCreate from "./components/recipe-create/RecipeCreate.jsx"
 import Edit from "./components/edit/Edit.jsx"
 import { useContext } from "react"
 import UserContext from "./contexts/UserContext.js"
+import Logout from "./components/logout/Logout.jsx"
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header user={user}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />
@@ -27,6 +28,7 @@ function App() {
         <Route path="/recipes/:recipeId/edit" element={<Edit />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Logout />} />
       </Routes>
       <Footer />
     </>
