@@ -9,7 +9,7 @@ import Register from "./components/register/Register.jsx"
 import RecipeCreate from "./components/recipe-create/RecipeCreate.jsx"
 import Edit from "./components/edit/Edit.jsx"
 import { useContext } from "react"
-import UserContext from "./contexts/UserContext.js"
+import UserContext from "./contexts/UserContext.jsx"
 import Logout from "./components/logout/Logout.jsx"
 
 

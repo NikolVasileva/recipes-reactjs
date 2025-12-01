@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm.js";
 import { useContext } from "react";
-import UserContext from "../../contexts/UserContext.js";
+import UserContext from "../../contexts/UserContext.jsx"
 
 export default function Login() {
     const navigate = useNavigate();
-    const { loginHadler } = useContext(UserContext);
+    const { loginHandler } = useContext(UserContext);
 
     const submitHandler = async ({ email, password }) => {
         if (!email || !password) {
@@ -13,7 +13,7 @@ export default function Login() {
         }
 
         try {
-            await loginHadler(email, password)
+            await loginHandler(email, password)
             navigate("/")
 
         } catch (err) {
@@ -21,7 +21,7 @@ export default function Login() {
         }
     }
 
-    const { values, changeHandler, formAction } = useForm({ email: "", password: "" }, loginHadler)
+    const { values, changeHandler, formAction } = useForm({ email: "", password: "" }, submitHandler)
 
     return (
         <div className="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">

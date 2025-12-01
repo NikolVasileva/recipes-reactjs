@@ -1,31 +1,33 @@
 import { useNavigate } from "react-router";
+import useForm from "../../hooks/useForm";
+import useRequest from "../../hooks/useRequest";
 
 export default function RecipeCreate() {
     const navigate = useNavigate();
+    const { request } = useRequest();
 
-    const createRecipeHandler = async (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.target)
-        const data = Object.fromEntries(formData);
-        data._createdOn = Date.now();
+    const createRecipeHandler = async (values) => {
+        const data = values
 
         try {
-            const response = await fetch("http://localhost:3030/data/recipes", {
-                method: "POST",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-
-            await response.json();
+            await request("/data/recipes", "POST", data)
             navigate("/recipes");
 
         } catch(err) {
             alert(err.message)
         }
     }
+    const { formAction } = useForm(createRecipeHandler, {
+        title: "",
+        description: "",
+        imageUrl: "",
+        ingredients: "",
+        category: "",
+        cookTime: "",
+        servings: "",
+        difficulty: ""
+    })
+
     return (
         <div className="container-fluid py-6 wow bounceInUp" data-wow-delay="0.1s">
             <div className="container">
@@ -36,11 +38,12 @@ export default function RecipeCreate() {
                         </small>
                         <h1 className="display-5 mb-0">Create a Recipe</h1>
                     </div>
-                    <form onSubmit={createRecipeHandler}>
+                    <form action={formAction}>
                         <div className="mb-3">
                             <label htmlFor="title" className="form-label text-dark">Recipe Title</label>
                             <input
                                 id="title"
+                                name="title"
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Recipe Title"
@@ -51,6 +54,7 @@ export default function RecipeCreate() {
                             <label htmlFor="description" className="form-label text-dark">Recipe Description</label>
                             <textarea
                                 id="description"
+                                name="description"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 rows="4"
                                 placeholder="Recipe Description"
@@ -61,6 +65,7 @@ export default function RecipeCreate() {
                             <label htmlFor="imageUrl" className="form-label text-dark">Image URL</label>
                             <input
                                 id="imageUrl"
+                                name="imageUrl"
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Image URL"
@@ -71,6 +76,7 @@ export default function RecipeCreate() {
                             <label htmlFor="ingredients" className="form-label text-dark">Ingredients</label>
                             <input
                                 id="ingredients"
+                                name="ingredients"
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Ingredients (comma separated)"
@@ -82,6 +88,7 @@ export default function RecipeCreate() {
                                 <label htmlFor="category" className="form-label text-dark">Category</label>
                                 <input
                                     id="category"
+                                    name="category"
                                     type="text"
                                     className="w-100 form-control p-3 border-primary bg-light"
                                     placeholder="Category"
@@ -91,6 +98,7 @@ export default function RecipeCreate() {
                                 <label htmlFor="cookTime" className="form-label text-dark">Cook Time (min)</label>
                                 <input
                                     id="cookTime"
+                                    name="cookTime"
                                     type="number"
                                     className="w-100 form-control p-3 border-primary bg-light"
                                     placeholder="Cook Time"
@@ -100,6 +108,7 @@ export default function RecipeCreate() {
                                 <label htmlFor="servings" className="form-label text-dark">Servings</label>
                                 <input
                                     id="servings"
+                                    name="servings"
                                     type="number"
                                     className="w-100 form-control p-3 border-primary bg-light"
                                     placeholder="Servings"
@@ -111,6 +120,7 @@ export default function RecipeCreate() {
                             <label htmlFor="difficulty" className="form-label text-dark">Difficulty</label>
                             <input
                                 id="difficulty"
+                                name="difficulty"
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Difficulty (easy, medium, hard)"
