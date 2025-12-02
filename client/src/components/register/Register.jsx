@@ -27,7 +27,7 @@ export default function Register() {
         }
     };
 
-    const { values, changeHandler, formAction } = useForm({ email: "", password: "", confirmPassword: ""}, registerSubmitHadler)
+    const { values, changeHandler, formAction } = useForm(registerSubmitHadler, { email: "", password: "", confirmPassword: ""})
     
     return (
         <div className="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
