@@ -27,7 +27,7 @@ export default function Register() {
         }
     };
 
-    const { formAction, changeHandler } = useForm({ email: "", password: "", confirmPassword: ""}, registerSubmitHadler)
+    const { values, changeHandler, formAction } = useForm({ email: "", password: "", confirmPassword: ""}, registerSubmitHadler)
     
     return (
         <div className="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
@@ -49,6 +49,7 @@ export default function Register() {
                                 <input
                                     type="email" 
                                     id="email"
+                                    value={values.email}
                                     onChange={changeHandler}
                                     name="email"
                                     className="w-100 form-control p-3 mb-4 border-primary bg-light"
@@ -59,6 +60,7 @@ export default function Register() {
                                     type="password" 
                                     id="password"
                                     name="password"
+                                    value={values.password}
                                     onChange={changeHandler}
                                     className="w-100 form-control p-3 mb-4 border-primary bg-light"
                                     placeholder="Password"
@@ -67,16 +69,12 @@ export default function Register() {
                                     type="password" 
                                     id="confirmPassword"
                                     name="confirmPassword"
+                                    value={values.confirmPassword}
                                     onChange={changeHandler}
                                     className="w-100 form-control p-3 mb-4 border-primary bg-light"
                                     placeholder="Confirm Password"
                                 />
-                                <button
-                                    className="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
-                                    type="submit"
-                                >
-                                    Register Now
-                                </button>
+                                <input className="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill" type="submit" value="Register Now" />
                             </form>
                         </div>
                     </div>

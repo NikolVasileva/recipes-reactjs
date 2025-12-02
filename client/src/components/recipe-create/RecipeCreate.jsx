@@ -8,16 +8,17 @@ export default function RecipeCreate() {
 
     const createRecipeHandler = async (values) => {
         const data = values
+        data._createdOn = Date.now()
 
         try {
             await request("/data/recipes", "POST", data)
             navigate("/recipes");
 
-        } catch(err) {
+        } catch (err) {
             alert(err.message)
         }
     }
-    const { formAction } = useForm(createRecipeHandler, {
+    const { values, changeHandler, formAction } = useForm(createRecipeHandler, {
         title: "",
         description: "",
         imageUrl: "",
@@ -43,6 +44,8 @@ export default function RecipeCreate() {
                             <label htmlFor="title" className="form-label text-dark">Recipe Title</label>
                             <input
                                 id="title"
+                                value={values.title}
+                                onChange={changeHandler}
                                 name="title"
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
@@ -54,6 +57,8 @@ export default function RecipeCreate() {
                             <label htmlFor="description" className="form-label text-dark">Recipe Description</label>
                             <textarea
                                 id="description"
+                                value={values.description}
+                                onChange={changeHandler}
                                 name="description"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 rows="4"
@@ -65,6 +70,8 @@ export default function RecipeCreate() {
                             <label htmlFor="imageUrl" className="form-label text-dark">Image URL</label>
                             <input
                                 id="imageUrl"
+                                value={values.imageUrl}
+                                onChange={changeHandler}
                                 name="imageUrl"
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
@@ -76,6 +83,8 @@ export default function RecipeCreate() {
                             <label htmlFor="ingredients" className="form-label text-dark">Ingredients</label>
                             <input
                                 id="ingredients"
+                                value={values.ingredients}
+                                onChange={changeHandler}
                                 name="ingredients"
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
@@ -88,6 +97,8 @@ export default function RecipeCreate() {
                                 <label htmlFor="category" className="form-label text-dark">Category</label>
                                 <input
                                     id="category"
+                                    value={values.category}
+                                    onChange={changeHandler}
                                     name="category"
                                     type="text"
                                     className="w-100 form-control p-3 border-primary bg-light"
@@ -98,6 +109,8 @@ export default function RecipeCreate() {
                                 <label htmlFor="cookTime" className="form-label text-dark">Cook Time (min)</label>
                                 <input
                                     id="cookTime"
+                                    value={values.cookTime}
+                                    onChange={changeHandler}
                                     name="cookTime"
                                     type="number"
                                     className="w-100 form-control p-3 border-primary bg-light"
@@ -108,6 +121,8 @@ export default function RecipeCreate() {
                                 <label htmlFor="servings" className="form-label text-dark">Servings</label>
                                 <input
                                     id="servings"
+                                    value={values.servings}
+                                    onChange={changeHandler}
                                     name="servings"
                                     type="number"
                                     className="w-100 form-control p-3 border-primary bg-light"
@@ -120,18 +135,18 @@ export default function RecipeCreate() {
                             <label htmlFor="difficulty" className="form-label text-dark">Difficulty</label>
                             <input
                                 id="difficulty"
+                                value={values.difficulty}
+                                onChange={changeHandler}
                                 name="difficulty"
                                 type="text"
                                 className="w-100 form-control p-3 border-primary bg-light"
                                 placeholder="Difficulty (easy, medium, hard)"
                             />
                         </div>
-                        <button
+                        <input
                             type="submit"
                             className="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill"
-                        >
-                            Add Recipe
-                        </button>
+                            value="Add Recipe" />
                     </form>
                 </div>
             </div>

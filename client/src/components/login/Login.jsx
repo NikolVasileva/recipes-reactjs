@@ -21,7 +21,7 @@ export default function Login() {
         }
     }
 
-    const { values, changeHandler, formAction } = useForm({ email: "", password: "" }, submitHandler)
+    const { values, changeHandler, formAction } = useForm(submitHandler, { email: "", password: "" })
 
     return (
         <div className="container-fluid contact py-6 wow bounceInUp" data-wow-delay="0.1s">
@@ -59,11 +59,9 @@ export default function Login() {
                                     className="w-100 form-control p-3 mb-4 border-primary bg-light"
                                     placeholder="Password"
                                 />
-                                <button
+                                <input
                                     className="w-100 btn btn-primary form-control p-3 border-primary bg-primary rounded-pill"
-                                    type="submit">
-                                    Login Now
-                                </button>
+                                    type="submit" value="Login Now" />
                             </form>
                         </div>
                     </div>
