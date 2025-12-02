@@ -8,7 +8,7 @@ export default function Header() {
         <div className="container-fluid nav-bar">
             <div className="container">
                 <nav className="navbar navbar-light navbar-expand-lg py-4">
-                    <Link href="/" className="navbar-brand">
+                    <Link to="/" className="navbar-brand">
                         <h1 className="text-primary fw-bold mb-0">Your<span className="text-dark">Taste</span> </h1>
                     </Link>
                     <button className="navbar-toggler py-2 px-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false">
