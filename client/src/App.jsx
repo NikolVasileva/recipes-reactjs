@@ -19,16 +19,16 @@ function App() {
 
   return (
     <>
-      <Header user={user}/>
+      <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipes/create" element={<RecipeCreate />} />
-        <Route path="/recipes/:recipeId/details" element={<Details />} />
+        <Route path="/recipes/:recipeId/details" element={<Details user={user}/>} />
         <Route path="/recipes/:recipeId/edit" element={<Edit />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/login" element={<Logout />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
       <Footer />
     </>

@@ -46,10 +46,10 @@ export default function useRequest(url, initialState) {
     };
 
     useEffect(() => {
-        if(!url) return;
+        if (!url) return;
 
         request(url)
-          .then(result => setData(result))
+        .then(result => setData(result))
           .catch(err => alert(err))
     }, [url])
 
