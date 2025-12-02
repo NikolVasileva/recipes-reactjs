@@ -15,7 +15,7 @@ export default function RecipesCard({
             <div className="bg-light rounded service-item">
                 <div className="service-content d-flex align-items-center justify-content-center p-4">
                     <div className="service-content-icon text-center">
-                        <img src={imageUrl} className="img-fluid rounded animated zoomIn" alt={title} />
+                        <img src={imageUrl || null} className="img-fluid rounded animated zoomIn" alt={title} />
                         <h4 className="mb-3">{title}</h4>
                         <p className="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
 
