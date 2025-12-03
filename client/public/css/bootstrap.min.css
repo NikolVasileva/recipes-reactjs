@@ -4599,6 +4599,7 @@ textarea.form-control-lg {
 .modal-footer>* {
     margin: .25rem
 }
+
 @media(min-width: 576px) {
     .modal-dialog {
         max-width: 500px;
