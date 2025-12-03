@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import useRequest from "../../hooks/useRequest";
 import { useUserContext } from "../../contexts/UserContext";
@@ -40,9 +40,9 @@ export default function Details() {
         }
     }
 
-    const refreshHandler = () => {
-        setRefresh(state => !state)
-    }
+    // const refreshHandler = () => {
+    //     setRefresh(state => !state)
+    // }
 
     return (
         <div className="container-fluid py-6">
@@ -77,7 +77,7 @@ export default function Details() {
 
                         <div className="row g-4 text-dark mb-5">
                             <div className="col-sm-6">
-                                <i className="fas fa-cheese text-primary me-2"></i>Ingredients: {recipe.ingredients}
+                                <i className="fas fa-cheese text-primary me-2"></i>Ingredients: {recipe.ingredients.join(", ")}
                             </div>
                             <div className="col-sm-6">
                                 <i className="fas fa-utensils text-primary me-2"></i>Servings: {recipe.servings}
