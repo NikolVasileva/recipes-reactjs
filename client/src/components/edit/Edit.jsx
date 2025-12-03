@@ -5,7 +5,7 @@ const initialValues = {
     title: "",
     description: "",
     imageUrl: "",
-    ingredients: [],
+    ingredients: "",
     category: "",
     cookTime: "",
     servings: "",

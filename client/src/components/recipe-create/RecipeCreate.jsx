@@ -22,7 +22,7 @@ export default function RecipeCreate() {
         title: "",
         description: "",
         imageUrl: "",
-        ingredients: [],
+        ingredients: "",
         category: "",
         cookTime: "",
         servings: "",

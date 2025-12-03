@@ -1,18 +1,48 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
+import useRequest from "../../hooks/useRequest";
+import { useUserContext } from "../../contexts/UserContext";
 
 export default function Details() {
+    const navigate = useNavigate()
     const { recipeId } = useParams();
-    const [recipe, setRecipe] = useState({});
+    // const [refresh, setRefresh] = useState(false)
+    const { isAuthenticated } = useUserContext();
+    // const [recipe, setRecipe] = useState({});
 
-    useEffect(() => {
-        fetch(`http://localhost:3030/data/recipes/${recipeId}`)
-            .then(response => response.json())
-            .then(data => {
-                setRecipe(data)
-            })
-            .catch(err => alert(err.message))
-    }, [recipeId])
+    const { data: recipe, request } = useRequest(`/data/recipes/${recipeId}`, {})
+
+    // useEffect(() => {
+    //     fetch(`http://localhost:3030/data/recipes/${recipeId}`)
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             setRecipe(data)
+    //         })
+    //         .catch(err => alert(err.message))
+    // }, [recipeId])
+
+    const deleteRecipeHandler = async() => {
+        const isComfirmed = confirm("Are you sure you want delete this recipe?");
+
+        if(!isComfirmed) {
+            return
+        }
+        
+        try {
+            await request(`/data/recipes/${recipeId}`, "DELETE");
+            // await fetch("/data/recipes/"`${recipeId}`, {
+            //     method: 'DELETE',
+            // });
+            navigate("/recipes")
+
+        } catch(err) {
+            alert("You cannot delete this recipe!", err.message)
+        }
+    }
+
+    const refreshHandler = () => {
+        setRefresh(state => !state)
+    }
 
     return (
         <div className="container-fluid py-6">
@@ -47,7 +77,7 @@ export default function Details() {
 
                         <div className="row g-4 text-dark mb-5">
                             <div className="col-sm-6">
-                                <i className="fas fa-cheese text-primary me-2"></i>Ingredients: {recipe.ingredients?.join(", ")}
+                                <i className="fas fa-cheese text-primary me-2"></i>Ingredients: {recipe.ingredients}
                             </div>
                             <div className="col-sm-6">
                                 <i className="fas fa-utensils text-primary me-2"></i>Servings: {recipe.servings}
@@ -59,11 +89,16 @@ export default function Details() {
                                 <i className="fas fa-star text-primary me-2"></i>Difficulty: {recipe.difficulty}
                             </div>
                         </div>
-                        <Link to={`/recipes/${recipeId}/edit`} className="btn btn-primary py-3 px-5 rounded-pill">Edit <i className="fas fa-arrow-right ps-2"></i>
-                        </Link>
-                        <a href="#" className="btn btn-primary py-3 px-5 rounded-pill">
-                            Delete <i className="fas fa-arrow-right ps-2"></i>
-                        </a>
+                        {isAuthenticated ? (
+                            <div>
+                             <Link to={`/recipes/${recipeId}/edit`} className="btn btn-primary py-3 px-5 rounded-pill">Edit <i className="fas fa-arrow-right ps-2"></i>
+                             </Link>
+                             <button className="btn btn-primary py-3 px-5 rounded-pill" onClick={deleteRecipeHandler}>
+                                 Delete <i className="fas fa-arrow-right ps-2"></i>
+                             </button>
+                            </div>
+                        ) : null }
+        
 
                     </div>
 
