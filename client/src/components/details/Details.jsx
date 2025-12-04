@@ -55,7 +55,7 @@ export default function Details() {
                         data-wow-delay="0.1s"
                         style={{ visibility: 'visible', animationDelay: '0.1s', animationName: 'bounceInUp' }}
                     >
-                        <img src={recipe.imageUrl} className="img-fluid rounded" alt={recipe.title} />
+                        <img src={recipe.imageUrl} className="img-fluid rounded fixed-img" alt={recipe.title} />
                     </div>
 
                     <div
