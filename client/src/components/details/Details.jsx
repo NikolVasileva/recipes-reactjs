@@ -7,10 +7,12 @@ export default function Details() {
     const navigate = useNavigate()
     const { recipeId } = useParams();
     // const [refresh, setRefresh] = useState(false)
-    const { isAuthenticated } = useUserContext();
+    const { user, isAuthenticated } = useUserContext();
     // const [recipe, setRecipe] = useState({});
 
+
     const { data: recipe, request } = useRequest(`/data/recipes/${recipeId}`, {})
+    const isOwner = user?._id === recipe?._ownerId;
 
     // useEffect(() => {
     //     fetch(`http://localhost:3030/data/recipes/${recipeId}`)
@@ -92,7 +94,7 @@ export default function Details() {
                                 <i className="fas fa-star text-primary me-2"></i>Difficulty: {recipe.difficulty}
                             </div>
                         </div>
-                        {isAuthenticated ? (
+                        {isAuthenticated && isOwner ? (
                             <div>
                              <Link to={`/recipes/${recipeId}/edit`} className="btn btn-primary py-3 px-5 rounded-pill">Edit <i className="fas fa-arrow-right ps-2"></i>
                              </Link>
