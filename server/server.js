@@ -1488,7 +1488,7 @@
             "stu901": {
               "_id": "stu901",
               "_createdOn": 1718214000000,
-              "title": "Omelette with Mushrooms and Cheese",
+              "title": "Omelette",
               "description": "A light and quick omelette made with fresh mushrooms, eggs, and cheese. Perfect for breakfast, a quick lunch, or a light dinner. The mushrooms give a deep, earthy aroma, while the melted cheese makes the omelette fluffy and delicious.",
               "category": "Breakfast",
               "imageUrl": "/img/omelette-mushrooms-cheese.jpg",
