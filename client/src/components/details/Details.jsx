@@ -23,13 +23,13 @@ export default function Details() {
     //         .catch(err => alert(err.message))
     // }, [recipeId])
 
-    const deleteRecipeHandler = async() => {
+    const deleteRecipeHandler = async () => {
         const isComfirmed = confirm("Are you sure you want delete this recipe?");
 
-        if(!isComfirmed) {
+        if (!isComfirmed) {
             return
         }
-        
+
         try {
             await request(`/data/recipes/${recipeId}`, "DELETE");
             // await fetch("/data/recipes/"`${recipeId}`, {
@@ -37,7 +37,7 @@ export default function Details() {
             // });
             navigate("/recipes")
 
-        } catch(err) {
+        } catch (err) {
             alert("You cannot delete this recipe!", err.message)
         }
     }
@@ -81,8 +81,8 @@ export default function Details() {
                             <div className="col-sm-6">
                                 <i className="fas fa-cheese text-primary me-2"></i>
                                 Ingredients: {Array.isArray(recipe.ingredients)
-                                             ? recipe.ingredients.join(", ")
-                                             : recipe.ingredients}
+                                    ? recipe.ingredients.join(", ")
+                                    : recipe.ingredients}
                             </div>
                             <div className="col-sm-6">
                                 <i className="fas fa-utensils text-primary me-2"></i>Servings: {recipe.servings}
@@ -95,16 +95,14 @@ export default function Details() {
                             </div>
                         </div>
                         {isAuthenticated && isOwner ? (
-                            <div>
-                             <Link to={`/recipes/${recipeId}/edit`} className="btn btn-primary py-3 px-5 rounded-pill">Edit <i className="fas fa-arrow-right ps-2"></i>
-                             </Link>
-                             <button className="btn btn-primary py-3 px-5 rounded-pill" onClick={deleteRecipeHandler}>
-                                 Delete <i className="fas fa-arrow-right ps-2"></i>
-                             </button>
+                            <div className="d-flex gap-3">
+                                <Link to={`/recipes/${recipeId}/edit`} className="btn btn-primary py-3 px-5 rounded-pill">Edit <i className="fas fa-arrow-right ps-2"></i>
+                                </Link>
+                                <button className="btn btn-primary py-3 px-5 rounded-pill" onClick={deleteRecipeHandler}>
+                                    Delete <i className="fas fa-arrow-right ps-2"></i>
+                                </button>
                             </div>
-                        ) : null }
-        
-
+                        ) : null}
                     </div>
 
                 </div>
