@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { useUserContext } from "../../contexts/UserContext";
 
 export default function Header() {
@@ -8,26 +8,26 @@ export default function Header() {
         <div className="container-fluid nav-bar">
             <div className="container">
                 <nav className="navbar navbar-light navbar-expand-lg py-4">
-                    <Link to="/" className="navbar-brand">
+                    <NavLink to="/" className="navbar-brand">
                         <h1 className="text-primary fw-bold mb-0">Your<span className="text-dark">Taste</span> </h1>
-                    </Link>
+                    </NavLink>
                     <button className="navbar-toggler py-2 px-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false">
                         <span className="fa fa-bars text-primary"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarCollapse">
                         <div className="navbar-nav mx-auto">
-                            <Link to="/" className="nav-item nav-link active">Home</Link>
-                            <Link to="/recipes" className="nav-item nav-link">Recipes</Link>
+                            <NavLink to="/" className="nav-item nav-link">Home</NavLink>
+                            <NavLink to="/recipes" className="nav-item nav-link">Recipes</NavLink>
 
                             {isAuthenticated ? (
                                 <>
-                                    <Link to="/recipes/create" className="nav-item nav-link">Add recipes</Link>
-                                    <Link to="/logout" className="nav-item nav-link">Logout</Link>
+                                    <NavLink to="/recipes/create" className="nav-item nav-link">Add recipes</NavLink>
+                                    <NavLink to="/logout" className="nav-item nav-link">Logout</NavLink>
                                 </>
                             ) : (
                                 <>
-                                    <Link to="/register" className="nav-item nav-link">Register</Link>
-                                    <Link to="/login" className="nav-item nav-link">Login</Link>
+                                    <NavLink to="/register" className="nav-item nav-link">Register</NavLink>
+                                    <NavLink to="/login" className="nav-item nav-link">Login</NavLink>
                                 </>
                             )}
 
