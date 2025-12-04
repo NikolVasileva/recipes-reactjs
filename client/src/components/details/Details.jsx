@@ -77,7 +77,10 @@ export default function Details() {
 
                         <div className="row g-4 text-dark mb-5">
                             <div className="col-sm-6">
-                                <i className="fas fa-cheese text-primary me-2"></i>Ingredients: {recipe.ingredients.join(", ")}
+                                <i className="fas fa-cheese text-primary me-2"></i>
+                                Ingredients: {Array.isArray(recipe.ingredients)
+                                             ? recipe.ingredients.join(", ")
+                                             : recipe.ingredients}
                             </div>
                             <div className="col-sm-6">
                                 <i className="fas fa-utensils text-primary me-2"></i>Servings: {recipe.servings}
