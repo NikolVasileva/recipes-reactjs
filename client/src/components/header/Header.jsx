@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router";
 import { useUserContext } from "../../contexts/UserContext";
 
 export default function Header() {
-    const { isAuthenticated } = useUserContext();
+    const { user, isAuthenticated } = useUserContext();
 
     return (
         <div className="container-fluid nav-bar">
@@ -33,9 +33,16 @@ export default function Header() {
 
                             {/* <a href="contact.html" className="nav-item nav-link">Contact</a> */}
                         </div>
-                        <button className="btn-search btn btn-primary btn-md-square me-4 rounded-circle d-none d-lg-inline-flex" data-bs-toggle="modal" data-bs-target="#searchModal"><i className="fas fa-search"></i></button>
-                        <a href="" className="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Book Now</a>
                     </div>
+                    {isAuthenticated ? (
+                        <>
+                        <h3 className="text-primary fw-bold mb-0">Let's <span className="text-dark">cook, </span>{user.email} </h3>
+                        </>
+                    ) : (
+                        <>
+                        <h3 className="text-primary fw-bold mb-0">Let's <span className="text-dark">cook!</span> </h3>
+                        </>
+                    )}
                 </nav>
             </div>
         </div>

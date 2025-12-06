@@ -42,7 +42,9 @@ export function UserProvider({
     };
 
     const logoutHandler = () => {
-        return request('/users/logout', 'GET', null, { accessToken: user.accessToken })
+        if (!user?.accessToken) return;
+
+        return request('/users/logout', 'GET', null, { accessToken: user?.accessToken })
             .finally(() => setUser(null));
     };
 
