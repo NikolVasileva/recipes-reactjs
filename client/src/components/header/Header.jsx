@@ -30,8 +30,6 @@ export default function Header() {
                                     <NavLink to="/login" className="nav-item nav-link">Login</NavLink>
                                 </>
                             )}
-
-                            {/* <a href="contact.html" className="nav-item nav-link">Contact</a> */}
                         </div>
                     </div>
                     {isAuthenticated ? (
