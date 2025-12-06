@@ -17,8 +17,6 @@ export default function RecipesCard({
                     <div className="service-content-icon text-center">
                         <img src={imageUrl || null} className="img-fluid rounded animated zoomIn fixed-img" alt={title} />
                         <h4 className="mb-3">{title}</h4>
-                        <p className="mb-4">Contrary to popular belief, ipsum is not simply random.</p>
-
                         <div className="d-flex align-items-center justify-content-center mb-3">
                             <i className="fas fa-utensils text-primary me-2"></i>
                             <span>{servings} servings</span>
