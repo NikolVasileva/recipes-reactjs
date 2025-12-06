@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
+import useRequest from "../../hooks/useRequest";
+import useForm from "../../hooks/useForm";
 
 const initialValues = {
     title: "",
@@ -13,44 +15,29 @@ const initialValues = {
 }
 
 export default function Edit() {
-    const navigate = useNavigate();
-    const { recipeId } = useParams();
-    const [values, setValues] = useState(initialValues)
-
-    const changeHandler = (e) => {
-        setValues(state => ({
-            ...state,
-            [e.target.name]: e.target.value
-        }))
-    }
-
-    useEffect(() => {
-        fetch(`http://localhost:3030/data/recipes/${recipeId}`)
-        .then(response => response.json())
-        .then(result => {
-            setValues(result)
-        })
-        .catch(err => {
-            alert(err.message)
-        })
-    }, [recipeId]);
-
-    const editRecipeHandler = async() => {
+    const editRecipeHandler = async(values) => {
         try {
-            const response = await fetch(`http://localhost:3030/data/recipes/${recipeId}`, {
-                method: "PUT",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(values)
-            });
-            await response.json();
+            await request(`/data/recipes/${recipeId}`, "PUT", values)
             navigate(`/recipes/${recipeId}/details`);
             
         } catch(err) {
             alert(err.message)
         }
     }
+    const { values, changeHandler, formAction, setValues }= useForm(editRecipeHandler, initialValues)
+    const navigate = useNavigate();
+    const { recipeId } = useParams();
+    const { request } = useRequest();
+
+    useEffect(() => {
+        request(`/data/recipes/${recipeId}`)
+        .then(result => {
+            setValues(result)
+        })
+        .catch(err => {
+            alert(err.message)
+        })
+    }, [recipeId, setValues]);
 
     return(        
     <div className="container-fluid py-6 wow bounceInUp" data-wow-delay="0.1s">
@@ -62,7 +49,7 @@ export default function Edit() {
                     </small>
                     <h1 className="display-5 mb-0">Edit Recipe</h1>
                 </div>
-                <form action={editRecipeHandler}>
+                <form action={formAction}>
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label text-dark">Recipe Title</label>
                         <input
@@ -80,6 +67,7 @@ export default function Edit() {
                         <label htmlFor="description" className="form-label text-dark">Recipe Description</label>
                         <textarea
                             id="description"
+                            type="text"
                             name="description"
                             value={values.description}
                             onChange={changeHandler}
@@ -166,12 +154,10 @@ export default function Edit() {
                             placeholder="Difficulty (easy, medium, hard)"
                         />
                     </div>
-                    <button
+                    <input
                         type="submit"
-                        className="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill"
-                    >
-                        Edit Recipe
-                    </button>
+                        className="w-100 btn btn-primary p-3 border-primary bg-primary rounded-pill" 
+                        value="Edit Recipe" />
                 </form>
             </div>
         </div>
