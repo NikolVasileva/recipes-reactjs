@@ -26,10 +26,8 @@ export function UserProvider({
     const registerHandler = async (email, password) => {
         const newUser = { email, password };
 
-        // Register API call 
         const result = await request('/users/register', 'POST', newUser);
 
-        // Login user after register
         setUser(result);
     };
 

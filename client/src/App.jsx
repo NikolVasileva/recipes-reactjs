@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router"
 import Header from "./components/header/Header.jsx"
 import Home from "./components/home/Home.jsx"
-import Recipes from "./components/Recipes/Recipes.jsx"
+import Recipes from "./components/recipes/Recipes.jsx"
 import Footer from "./components/footer/Footer.jsx"
 import Details from "./components/details/Details.jsx"
 import Login from "./components/login/Login.jsx"
@@ -12,6 +12,8 @@ import Edit from "./components/edit/Edit.jsx"
 // import UserContext from "./contexts/UserContext.jsx"
 import Logout from "./components/logout/Logout.jsx"
 import { UserProvider } from "./contexts/UserContext.jsx"
+
+
 
 
 function App() {

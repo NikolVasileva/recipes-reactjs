@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
-import useRequest from "../../hooks/useRequest";
-import useForm from "../../hooks/useForm";
+import useRequest from "../../hooks/useRequest.js";
+import useForm from "../../hooks/useForm.js";
 
 const initialValues = {
     title: "",

@@ -1,5 +1,5 @@
-import useRequest from "../../hooks/useRequest"
-import RecipesCard from "../recipes-card/RecipeCard"
+import useRequest from "../../hooks/useRequest.js"
+import RecipesCard from "../recipes-card/RecipeCard.jsx"
 
 export default function Home() {
     const { data: latestRecipes } = useRequest("/data/recipes?sortBy=_createdOn%20desc&pageSize=4", [])

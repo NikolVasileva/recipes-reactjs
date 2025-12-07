@@ -1,7 +1,7 @@
 // import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import useRequest from "../../hooks/useRequest";
-import { useUserContext } from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext.jsx";
 
 export default function Details() {
     const navigate = useNavigate()

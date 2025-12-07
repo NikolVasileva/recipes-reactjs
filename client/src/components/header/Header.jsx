@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router";
-import { useUserContext } from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext.jsx";
 
 export default function Header() {
     const { user, isAuthenticated } = useUserContext();

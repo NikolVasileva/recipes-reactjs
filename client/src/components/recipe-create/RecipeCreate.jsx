@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
-import useForm from "../../hooks/useForm";
-import useRequest from "../../hooks/useRequest";
+import useForm from "../../hooks/useForm.js";
+import useRequest from "../../hooks/useRequest.js";
 
 export default function RecipeCreate() {
     const navigate = useNavigate();
