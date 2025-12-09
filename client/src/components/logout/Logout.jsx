@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext.jsx";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export default function Logout() {
     const { logoutHandler } = useContext(UserContext);
@@ -9,7 +10,7 @@ export default function Logout() {
     logoutHandler()
     .then(() => navigate("/"))
     .catch(() => {
-        alert("You cannot logout")
+        toast.error("You cannot logout")
         navigate("/")
     })
 

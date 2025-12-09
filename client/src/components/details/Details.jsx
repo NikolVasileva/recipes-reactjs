@@ -2,26 +2,15 @@
 import { Link, useNavigate, useParams } from "react-router";
 import useRequest from "../../hooks/useRequest";
 import { useUserContext } from "../../contexts/UserContext.jsx";
+import { toast } from "react-toastify";
 
 export default function Details() {
     const navigate = useNavigate()
     const { recipeId } = useParams();
-    // const [refresh, setRefresh] = useState(false)
     const { user, isAuthenticated } = useUserContext();
-    // const [recipe, setRecipe] = useState({});
-
 
     const { data: recipe, request } = useRequest(`/data/recipes/${recipeId}`, {})
     const isOwner = user?._id === recipe?._ownerId;
-
-    // useEffect(() => {
-    //     fetch(`http://localhost:3030/data/recipes/${recipeId}`)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             setRecipe(data)
-    //         })
-    //         .catch(err => alert(err.message))
-    // }, [recipeId])
 
     const deleteRecipeHandler = async () => {
         const isComfirmed = confirm("Are you sure you want delete this recipe?");
@@ -32,19 +21,12 @@ export default function Details() {
 
         try {
             await request(`/data/recipes/${recipeId}`, "DELETE");
-            // await fetch("/data/recipes/"`${recipeId}`, {
-            //     method: 'DELETE',
-            // });
             navigate("/recipes")
 
         } catch (err) {
-            alert("You cannot delete this recipe!", err.message)
+            toast.error(`You can not delete this recipe, ${err.message}`)
         }
     }
-
-    // const refreshHandler = () => {
-    //     setRefresh(state => !state)
-    // }
 
     return (
         <div className="container-fluid py-6">

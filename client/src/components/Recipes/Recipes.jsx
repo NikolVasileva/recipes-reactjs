@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import RecipeCard from "../recipes-card/RecipeCard.jsx"
+import { toast } from "react-toastify"
 
 export default function Recipes() {
 
@@ -11,7 +12,7 @@ export default function Recipes() {
         .then(data => {
             setRecipes(Object.values(data))
         })
-        .catch(err => alert(err.message))
+        .catch(err => toast.error(`${err.message}`))
     }, [])
 
     return(

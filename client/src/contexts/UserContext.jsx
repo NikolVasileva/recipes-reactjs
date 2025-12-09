@@ -34,8 +34,6 @@ export function UserProvider({
     const loginHandler = async (email, password) => {
         const result = await request('/users/login', 'POST', { email, password });
 
-        console.log(result);
-
         setUser(result);
     };
 

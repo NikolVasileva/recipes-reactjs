@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm.js";
 import useRequest from "../../hooks/useRequest.js";
+import { toast } from "react-toastify";
 
 export default function RecipeCreate() {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ export default function RecipeCreate() {
             navigate("/recipes");
 
         } catch (err) {
-            alert(err.message)
+            toast.error("You cannot create recipe!")
         }
     }
     const { values, changeHandler, formAction } = useForm(createRecipeHandler, {

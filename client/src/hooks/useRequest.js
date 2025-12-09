@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../contexts/UserContext.jsx";
+import { toast } from "react-toastify";
 
 const baseUrl = "http://localhost:3030";
 
@@ -50,7 +51,7 @@ export default function useRequest(url, initialState) {
 
         request(url)
         .then(result => setData(result))
-          .catch(err => alert(err))
+          .catch(err => toast.error("You cannot login"))
     }, [url])
 
     return {

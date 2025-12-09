@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm.js";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext.jsx";
+import { toast } from "react-toastify";
 
 export default function Register() {
     const navigate = useNavigate()
@@ -11,11 +12,11 @@ export default function Register() {
         const { email, password, confirmPassword } = values;
 
         if(!email || !password) {
-            return alert("Email and password are required!")
+            return toast("Email and password are required!")
         }
 
         if(password !== confirmPassword) {
-            return alert("Password missmatch!")
+            return toast("Password missmatch!")
         }
 
         try {
@@ -23,7 +24,7 @@ export default function Register() {
             navigate("/")
 
         } catch(err) {
-            alert(err.message)
+            toast.error("You cannot login")
         }
     };
 

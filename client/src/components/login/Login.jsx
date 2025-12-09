@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import useForm from "../../hooks/useForm.js";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext.jsx"
+import { toast } from "react-toastify"
 
 export default function Login() {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ export default function Login() {
 
     const submitHandler = async ({ email, password }) => {
         if (!email || !password) {
-            return alert('Email and password are required!');
+            return toast('Email and password are required!');
         }
 
         try {
@@ -17,7 +18,7 @@ export default function Login() {
             navigate("/")
 
         } catch (err) {
-            alert(err.message)
+            toast.error("Cannot login")
         }
     }
 

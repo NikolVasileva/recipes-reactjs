@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import useRequest from "../../hooks/useRequest.js";
 import useForm from "../../hooks/useForm.js";
+import { toast } from "react-toastify";
 
 const initialValues = {
     title: "",
@@ -21,7 +22,7 @@ export default function Edit() {
             navigate(`/recipes/${recipeId}/details`);
             
         } catch(err) {
-            alert(err.message)
+            toast.error("You cannot edit this recipe!")
         }
     }
     const { values, changeHandler, formAction, setValues }= useForm(editRecipeHandler, initialValues)
@@ -35,7 +36,7 @@ export default function Edit() {
             setValues(result)
         })
         .catch(err => {
-            alert(err.message)
+            toast.error(`${err.message}`)
         })
     }, [recipeId, setValues]);
 
