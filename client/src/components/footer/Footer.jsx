@@ -10,7 +10,7 @@ export default function Footer() {
                             <h1 className="text-primary fw-bold mb-0">Your<span className="text-dark">Taste</span> </h1>
                         </NavLink>
                         <p className="lh-lg mb-4">Explore YourTaste For Your Dream Dinner</p>
-                        <p class="uppercase color-2 fs-text-16">© YourTaste 2025 - SoftUni ReactJS Project</p>
+                        <p className="uppercase color-2 fs-text-16">© YourTaste 2025 - SoftUni ReactJS Project</p>
                     </div>
                 </div>
             </div>
