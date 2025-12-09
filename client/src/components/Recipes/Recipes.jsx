@@ -7,7 +7,7 @@ export default function Recipes() {
     const[recipes, setRecipes] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3030/data/recipes")
+        fetch("http://127.0.0.1:5001/recipes-app-1223f/us-central1/server/data/recipes")
         .then(response => response.json())
         .then(data => {
             setRecipes(Object.values(data))

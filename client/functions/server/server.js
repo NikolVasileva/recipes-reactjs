@@ -178,7 +178,9 @@
             .filter(s => s != '')
             .map(x => x.split('='))
             .reduce((p, [k, v]) => Object.assign(p, { [k]: decodeURIComponent(v) }), {});
-        const body = await parseBody(req);
+        // const body = await parseBody(req);
+        const body = req.body
+
 
         return {
             serviceName,
@@ -1533,15 +1535,15 @@
 
     const server = http__default['default'].createServer(requestHandler(plugins, services));
 
-    const port = 3030;
-    server.listen(port);
-    console.log(`Server started on port ${port}. You can make requests to http://localhost:${port}/`);
-    console.log(`Admin panel located at http://localhost:${port}/admin`);
+    // const port = 3030;
+    // server.listen(port);
+    // console.log(`Server started on port ${port}. You can make requests to http://localhost:${port}/`);
+    // console.log(`Admin panel located at http://localhost:${port}/admin`);
 
-    var softuniPracticeServer = {
+    // var softuniPracticeServer = {
 
-    };
+    // };
 
-    return softuniPracticeServer;
+    return server
 
 })));
