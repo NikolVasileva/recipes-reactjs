@@ -13,18 +13,14 @@ A simple recipe web application built with React. The app provides public browsi
 ## 🎨 Design Templates
 The design is based on from online free HTML template -> https://htmlcodex.com/catering-services-website-template/
 
-## 🗂️ Project Structure
-- <strong>/client</strong>  – React frontend
-- <strong>/server</strong>  – SoftUni Practice Server
-
 ## 🚀 How to Run the Project
-- <strong>/client:</strong>
-    - Open in integrated terminal
+- <strong>React frontend:</strong>
+    - Open in integrated terminal - /client
     - npm i 
     - npm run dev
--  <strong>/server:</strong>
-    - Open in integrated terminal
-    - node server.js
+-  <strong>SoftUni Practice Server:</strong>
+    - Open in integrated terminal - /client
+    - npm run server
 
 ## 🌐 Deployment
-The project is deployed online and can be accessed here: 
+The project is deployed online and can be accessed here: https://recipes-app-1223f.web.app
