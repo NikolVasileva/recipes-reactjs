@@ -6,7 +6,8 @@ const server = require("./server/server.js");
 
 exports.server = onRequest((req, res) => {
     server.emit("request", req, res)
+
 })
 
-setGlobalOptions({ maxInstances: 1, region: "europe-west4" });
+setGlobalOptions({ maxInstances: 1});
 

@@ -8,7 +8,7 @@ A simple recipe web application built with React. The app provides public browsi
 - <strong>User Authentication:</strong> Registration and login functionality.
 - <strong>Recipe Details:</strong> Each recipe includes a dedicated detail page.
 - <strong>Access Control:</strong> Only logged-in users can add new recipes.
-- <strong>Only the recipe owner</strong> (login: peter@abv.bg) can edit or delete their own recipes.
+- <strong>Only the recipe owner</strong> (login: peter@abv.bg, pass: 123456 -> Chicken Soup and Pasta Carbonara) can edit or delete their own recipes. 
 
 ## 🎨 Design Templates
 The design is based on from online free HTML template -> https://htmlcodex.com/catering-services-website-template/
